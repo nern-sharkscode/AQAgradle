@@ -1,8 +1,11 @@
 import com.microsoft.playwright.*;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+
+import java.nio.file.Paths;
 
 public class BaseTest {
 
@@ -32,7 +35,11 @@ public class BaseTest {
     }
 
     @AfterMethod
-    void closeContext() {
+    public void takeScreenshotOnFailure(ITestResult result) {
+        if(result.getStatus() == (ITestResult.FAILURE)) {
+            String testName = result.getName();
+            page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("screenshots/" + testName + ".png")));
+        }
         context.close();
     }
 }
