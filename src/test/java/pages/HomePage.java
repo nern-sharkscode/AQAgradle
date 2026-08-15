@@ -1,8 +1,9 @@
+package pages;
+
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
-public class HomePage {
-    private final Page page;
+public class HomePage extends BasePage{
     private static final String headerRegisterButton = ".ico-register";
     private static final String headerLoginButton = ".ico-login";
     private static final String headerHomeButton = ".header-logo";
@@ -12,7 +13,7 @@ public class HomePage {
     private static final String logOutButton = ".ico-logout";
 
     public HomePage(Page page) {
-        this.page = page;
+        super(page);
     }
 
     public Locator getSearchedProductTitle() {

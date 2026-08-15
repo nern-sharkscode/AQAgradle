@@ -1,13 +1,16 @@
-import com.microsoft.playwright.Page;
+package tests;
+
 import org.testng.annotations.Test;
+import pages.HomePage;
+import pages.RegisterPage;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class RegisterTest extends BaseTest {
-    String firstName = "User";
-    String lastName = "First";
     Long timeMS = System.currentTimeMillis();
-    String email = "firstUser" + timeMS + "@gmail.com";
+    String firstName = "User" + timeMS;
+    String lastName = "First";
+    String email = firstName + "@gmail.com";
     String password = "qwerty1";
 
     @Test(groups = "positive")
@@ -15,15 +18,8 @@ public class RegisterTest extends BaseTest {
         String completedRegistration = "Your registration completed";
         HomePage homePage = new HomePage(page);
         RegisterPage registerPage = new RegisterPage(page);
-        page.navigate("/");
         homePage.clickOnHeaderRegisterButton();
-        registerPage.clickOnGenderMaleRadioButton();
-        registerPage.fillFirstNameInput(firstName);
-        registerPage.fillLastNameInput(lastName);
-        registerPage.fillEmailInput(email);
-        registerPage.fillPasswordInput(password);
-        registerPage.fillConfirmPasswordInput(password);
-        registerPage.clickOnRegisterButton();
+        registerPage.registerAs(firstName, lastName, email, password);
         assertThat(registerPage.getRegisterResult()).hasText(completedRegistration);
     }
 }

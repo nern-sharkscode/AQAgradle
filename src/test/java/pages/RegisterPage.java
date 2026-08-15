@@ -1,8 +1,9 @@
+package pages;
+
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
-public class RegisterPage {
-    private final Page page;
+public class RegisterPage extends BasePage {
     private static final String genderMaleRadioButton = "#gender-male";
     private static final String genderFemaleRadioButton = "#gender-female";
     private static final String firstNameInput = "#FirstName";
@@ -14,7 +15,7 @@ public class RegisterPage {
     private static final String registerResult = ".result";
 
     public RegisterPage(Page page) {
-        this.page = page;
+        super(page);
     }
 
     public Locator getRegisterResult() {
@@ -51,5 +52,15 @@ public class RegisterPage {
 
     public void clickOnRegisterButton() {
         page.locator(registerButton).click();
+    }
+
+    public void registerAs(String firstName, String lastName, String email, String password) {
+        clickOnGenderMaleRadioButton();
+        fillFirstNameInput(firstName);
+        fillLastNameInput(lastName);
+        fillEmailInput(email);
+        fillPasswordInput(password);
+        fillConfirmPasswordInput(password);
+        clickOnRegisterButton();
     }
 }

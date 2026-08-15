@@ -1,8 +1,9 @@
+package pages;
+
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
-public class LoginPage {
-    private final Page page;
+public class LoginPage extends BasePage {
     private static final String emailInput = "#Email";
     private static final String passwordInput = "#Password";
     private static final String loginButton = ".login-button";
@@ -10,13 +11,14 @@ public class LoginPage {
     private static final String validationSummaryErrors = ".validation-summary-errors";
 
     public LoginPage(Page page) {
-        this.page = page;
+        super(page);
     }
 
-    public Locator getHeaderUserEmail(){
+    public Locator getHeaderUserEmail() {
         return page.locator(headerUserEmail);
     }
-    public Locator getValidationSummaryErrors(){
+
+    public Locator getValidationSummaryErrors() {
         return page.locator(validationSummaryErrors);
     }
 
@@ -30,5 +32,11 @@ public class LoginPage {
 
     public void clickOnLoginButton() {
         page.locator(loginButton).click();
+    }
+
+    public void loginAs(String email, String password) {
+        fillEmailInput(email);
+        fillPasswordInput(password);
+        clickOnLoginButton();
     }
 }
