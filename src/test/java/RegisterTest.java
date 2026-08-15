@@ -12,6 +12,7 @@ public class RegisterTest extends BaseTest {
 
     @Test(groups = "positive")
     public void SuccessfulRegistration() {
+        String completedRegistration = "Your registration completed";
         HomePage homePage = new HomePage(page);
         RegisterPage registerPage = new RegisterPage(page);
         page.navigate("/");
@@ -23,6 +24,6 @@ public class RegisterTest extends BaseTest {
         registerPage.fillPasswordInput(password);
         registerPage.fillConfirmPasswordInput(password);
         registerPage.clickOnRegisterButton();
-        assertThat(page.locator(".result")).hasText("Your registration completed");
+        assertThat(registerPage.getRegisterResult()).hasText(completedRegistration);
     }
 }

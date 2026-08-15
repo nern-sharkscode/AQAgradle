@@ -3,26 +3,32 @@ import com.microsoft.playwright.Page;
 
 public class LoginPage {
     private final Page page;
-    private final Locator emailInput;
-    private final Locator passwordInput;
-    private final Locator loginButton;
+    private static final String emailInput = "#Email";
+    private static final String passwordInput = "#Password";
+    private static final String loginButton = ".login-button";
+    private static final String headerUserEmail = ".header-links .account";
+    private static final String validationSummaryErrors = ".validation-summary-errors";
 
     public LoginPage(Page page) {
         this.page = page;
-        this.emailInput = page.locator("#Email");
-        this.passwordInput = page.locator("#Password");
-        this.loginButton = page.locator(".login-button");
+    }
+
+    public Locator getHeaderUserEmail(){
+        return page.locator(headerUserEmail);
+    }
+    public Locator getValidationSummaryErrors(){
+        return page.locator(validationSummaryErrors);
     }
 
     public void fillEmailInput(String email) {
-        emailInput.fill(email);
+        page.locator(emailInput).fill(email);
     }
 
     public void fillPasswordInput(String password) {
-        passwordInput.fill(password);
+        page.locator(passwordInput).fill(password);
     }
 
     public void clickOnLoginButton() {
-        loginButton.click();
+        page.locator(loginButton).click();
     }
 }

@@ -3,52 +3,46 @@ import com.microsoft.playwright.Page;
 
 public class HomePage {
     private final Page page;
-    private final Locator headerRegisterButton;
-    private final Locator headerLoginButton;
-    private final Locator headerHomeButton;
-    private final Locator searchBar;
-    private final Locator searchButton;
-    private final Locator slider;
-    private final Locator nivoControlNav;
-    private final Locator productGrid;
+    private static final String headerRegisterButton = ".ico-register";
+    private static final String headerLoginButton = ".ico-login";
+    private static final String headerHomeButton = ".header-logo";
+    private static final String searchBar = "#small-searchterms";
+    private static final String searchButton = ".search-box-button";
+    private static final String searchedProductTitle = ".search-results .product-item .product-title a";
 
     public HomePage(Page page) {
         this.page = page;
-        this.headerRegisterButton = page.locator(".ico-register");
-        this.headerLoginButton = page.locator(".ico-login");
-        this.headerHomeButton = page.locator(".header-logo");
-        this.searchBar = page.locator("#small-searchterms");
-        this.searchButton = page.locator(".search-box-button");
-        this.slider = page.locator("#nivo-slider");
-        this.nivoControlNav = page.locator(".nivo-controlNav");
-        this.productGrid = page.locator(".home-page-product-grid");
     }
 
-    public Locator getSearchBar(){
-        return searchBar;
+    public Locator getSearchedProductTitle(){
+        return page.locator(searchedProductTitle);
+    }
+    public Locator getSearchBar() {
+        return page.locator(searchBar);
     }
 
-    public Locator getSearchButton(){
-        return searchButton;
+    public Locator getSearchButton() {
+        return page.locator(searchButton);
     }
-     public void clickOnSearchButton(){
-        searchButton.click();
-     }
 
-    public void fillSearchBar(){
-        searchBar.fill("Build your own expensive computer");
+    public void clickOnSearchButton() {
+        page.locator(searchButton).click();
+    }
+
+    public void fillSearchBar() {
+        page.locator(searchBar).fill("Build your own expensive computer");
     }
 
     public void clickOnHeaderHomeButton() {
-        headerHomeButton.click();
+        page.locator(headerHomeButton).click();
     }
 
     public void clickOnHeaderRegisterButton() {
-        headerRegisterButton.click();
+        page.locator(headerRegisterButton).click();
     }
 
     public void clickOnHeaderLoginButton() {
-        headerLoginButton.click();
+        page.locator(headerLoginButton).click();
     }
 
 }

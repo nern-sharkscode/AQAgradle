@@ -3,56 +3,53 @@ import com.microsoft.playwright.Page;
 
 public class RegisterPage {
     private final Page page;
-    private final Locator genderMaleRadioButton;
-    private final Locator genderFemaleRadioButton;
-    private final Locator firstNameInput;
-    private final Locator lastNameInput;
-    private final Locator emailInput;
-    private final Locator passwordInput;
-    private final Locator confirmPasswordInput;
-    private final Locator registerButton;
+    private static final String genderMaleRadioButton = "#gender-male";
+    private static final String genderFemaleRadioButton = "#gender-female";
+    private static final String firstNameInput = "#FirstName";
+    private static final String lastNameInput = "#LastName";
+    private static final String emailInput = "#Email";
+    private static final String passwordInput = "#Password";
+    private static final String confirmPasswordInput = "#ConfirmPassword";
+    private static final String registerButton = "#register-button";
+    private static final String registerResult = ".result";
 
     public RegisterPage(Page page) {
         this.page = page;
-        this.genderMaleRadioButton = page.locator("#gender-male");
-        this.genderFemaleRadioButton = page.locator("#gender-female");
-        this.firstNameInput = page.locator("#FirstName");
-        this.lastNameInput = page.locator("#LastName");
-        this.emailInput = page.locator("#Email");
-        this.passwordInput = page.locator("#Password");
-        this.confirmPasswordInput = page.locator("#ConfirmPassword");
-        this.registerButton = page.locator("#register-button");
+    }
+
+    public Locator getRegisterResult() {
+        return page.locator(registerResult);
     }
 
     public void clickOnGenderMaleRadioButton() {
-        genderMaleRadioButton.click();
+        page.locator(genderMaleRadioButton).click();
     }
 
     public void clickOnGenderFemaleRadioButton() {
-        genderFemaleRadioButton.click();
+        page.locator(genderFemaleRadioButton).click();
     }
 
     public void fillFirstNameInput(String firstName) {
-        firstNameInput.fill(firstName);
+        page.locator(firstNameInput).fill(firstName);
     }
 
     public void fillLastNameInput(String lastName) {
-        lastNameInput.fill(lastName);
+        page.locator(lastNameInput).fill(lastName);
     }
 
     public void fillEmailInput(String email) {
-        emailInput.fill(email);
+        page.locator(emailInput).fill(email);
     }
 
     public void fillPasswordInput(String password) {
-        passwordInput.fill(password);
+        page.locator(passwordInput).fill(password);
     }
 
     public void fillConfirmPasswordInput(String password) {
-        confirmPasswordInput.fill(password);
+        page.locator(confirmPasswordInput).fill(password);
     }
 
     public void clickOnRegisterButton() {
-        registerButton.click();
+        page.locator(registerButton).click();
     }
 }

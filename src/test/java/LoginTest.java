@@ -7,18 +7,21 @@ public class LoginTest extends BaseTest {
 
     @Test(groups = "positive")
     public void successfulLogin() {
+        String userEmail = "firstUser321@gmail.com";
+        String userPassword = "qwerty1";
         LoginPage loginPage = new LoginPage(page);
         HomePage homePage = new HomePage(page);
         page.navigate("/");
         homePage.clickOnHeaderLoginButton();
-        loginPage.fillEmailInput("firstUser321@gmail.com");
-        loginPage.fillPasswordInput("qwerty1");
+        loginPage.fillEmailInput(userEmail);
+        loginPage.fillPasswordInput(userPassword);
         loginPage.clickOnLoginButton();
-        assertThat(page.locator(".header-links .account")).hasText("firstUser321@gmail.com");
+        assertThat(loginPage.getHeaderUserEmail()).hasText(userEmail);
     }
 
     @Test(groups = "negative")
     public void invalidLogin() {
+        String failedLoginText = "Login was unsuccessful.";
         LoginPage loginPage = new LoginPage(page);
         HomePage homePage = new HomePage(page);
         page.navigate("/");
@@ -26,6 +29,6 @@ public class LoginTest extends BaseTest {
         loginPage.fillEmailInput("firstUser333@gmail.com");
         loginPage.fillPasswordInput("qwerty1");
         loginPage.clickOnLoginButton();
-        assertThat(page.locator(".validation-summary-errors")).containsText("Login was unsuccessful.");
+        assertThat(loginPage.getValidationSummaryErrors()).containsText(failedLoginText);
     }
 }
