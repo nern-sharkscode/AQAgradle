@@ -9,20 +9,30 @@ public class HomePage {
     private static final String searchBar = "#small-searchterms";
     private static final String searchButton = ".search-box-button";
     private static final String searchedProductTitle = ".search-results .product-item .product-title a";
+    private static final String logOutButton = ".ico-logout";
 
     public HomePage(Page page) {
         this.page = page;
     }
 
-    public Locator getSearchedProductTitle(){
+    public Locator getSearchedProductTitle() {
         return page.locator(searchedProductTitle);
     }
+
     public Locator getSearchBar() {
         return page.locator(searchBar);
     }
 
     public Locator getSearchButton() {
         return page.locator(searchButton);
+    }
+
+    public Locator getLogOutButton(){
+        return page.locator(logOutButton);
+    }
+
+    public void clickOnLogoutButton() {
+        page.locator(logOutButton).click();
     }
 
     public void clickOnSearchButton() {
