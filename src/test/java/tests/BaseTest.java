@@ -6,6 +6,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import utils.ConfigReader;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -22,7 +23,6 @@ public class BaseTest {
     // New instance for each test method.
     BrowserContext context;
     Page page;
-    Properties config = new Properties();
 
     @BeforeClass
     void launchBrowser() {
@@ -37,12 +37,7 @@ public class BaseTest {
 
     @BeforeMethod
     void createContextAndPage() {
-        try (InputStream input = new FileInputStream("src/test/resources/config.properties")) {
-            config.load(input);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        context = browser.newContext(new Browser.NewContextOptions().setBaseURL(config.getProperty("baseUrl")));
+        context = browser.newContext(new Browser.NewContextOptions().setBaseURL(ConfigReader.getPropertyFromConfig("baseUrl")));
         page = context.newPage();
         page.navigate("/");
     }
