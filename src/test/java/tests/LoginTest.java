@@ -10,6 +10,22 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 
 public class LoginTest extends BaseTest {
 
+    @DataProvider(name = "invalidCredentials")
+    public Object[][] getInvalidCredentials() {
+        return new Object[][]{
+                {
+                        ConfigReader.getPropertyFromConfig("emailForUserUnsuccessLogin"),
+                        ConfigReader.getPropertyFromConfig("passwordForUserUnsuccessLogin")
+                },
+                {
+                        ConfigReader.getPropertyFromConfig("emailForUserSuccessLogin"), ConfigReader.getPropertyFromConfig("passwordForUserUnsuccessLogin")
+                },
+                {
+                        ConfigReader.getPropertyFromConfig("emailForUserUnsuccessLogin"), ConfigReader.getPropertyFromConfig("passwordForUserSuccessLogin")
+                }
+        };
+    }
+
     @Test(groups = "positive")
     public void successfulLogin() {
         LoginPage loginPage = new LoginPage(page);
@@ -19,13 +35,13 @@ public class LoginTest extends BaseTest {
         assertThat(loginPage.getHeaderUserEmail()).hasText(ConfigReader.getPropertyFromConfig("emailForUserSuccessLogin"));
     }
 
-    @Test(groups = "negative")
-    public void invalidLogin() {
+    @Test(groups = "negative", dataProvider = "invalidCredentials")
+    public void invalidLogin(String email, String password) {
         String failedLoginText = "Login was unsuccessful.";
         LoginPage loginPage = new LoginPage(page);
         HomePage homePage = new HomePage(page);
         homePage.clickOnHeaderLoginButton();
-        loginPage.loginAs(ConfigReader.getPropertyFromConfig("emailForUserUnsuccessLogin"), ConfigReader.getPropertyFromConfig("passwordForUserUnsuccessLogin"));
+        loginPage.loginAs(email, password);
         assertThat(loginPage.getValidationSummaryErrors()).containsText(failedLoginText);
     }
 }
