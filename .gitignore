@@ -10,10 +10,12 @@ build/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+.idea/
 *.iws
 *.iml
 *.ipr
 out/
+screenshots/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
