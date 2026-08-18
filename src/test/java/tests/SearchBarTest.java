@@ -11,7 +11,7 @@ public class SearchBarTest extends BaseTest {
     public void searchProduct(){
         String productName = "Build your own expensive computer";
         HomePage homePage = new HomePage(page);
-        homePage.fillSearchBar();
+        homePage.fillSearchBar(productName);
         homePage.clickOnSearchButton();
         assertThat(homePage.getSearchedProductTitle()).hasText(productName);
     }

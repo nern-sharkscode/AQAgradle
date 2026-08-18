@@ -40,8 +40,8 @@ public class HomePage extends BasePage{
         page.locator(searchButton).click();
     }
 
-    public void fillSearchBar() {
-        page.locator(searchBar).fill("Build your own expensive computer");
+    public void fillSearchBar(String searchText) {
+        page.locator(searchBar).fill(searchText);
     }
 
     public void clickOnHeaderHomeButton() {
