@@ -20,6 +20,6 @@ public class RegisterTest extends BaseTest {
         RegisterPage registerPage = new RegisterPage(page);
         homePage.clickOnHeaderRegisterButton();
         registerPage.registerAs(firstName, lastName, email, password);
-        assertThat(registerPage.getRegisterResult()).hasText(completedRegistration);
+        registerPage.verifySuccessRegistration(completedRegistration);
     }
 }

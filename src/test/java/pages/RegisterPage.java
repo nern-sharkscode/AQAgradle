@@ -3,6 +3,8 @@ package pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+
 public class RegisterPage extends BasePage {
     private static final String genderMaleRadioButton = "#gender-male";
     private static final String genderFemaleRadioButton = "#gender-female";
@@ -16,10 +18,6 @@ public class RegisterPage extends BasePage {
 
     public RegisterPage(Page page) {
         super(page);
-    }
-
-    public Locator getRegisterResult() {
-        return page.locator(registerResult);
     }
 
     public void clickOnGenderMaleRadioButton() {
@@ -62,5 +60,9 @@ public class RegisterPage extends BasePage {
         fillPasswordInput(password);
         fillConfirmPasswordInput(password);
         clickOnRegisterButton();
+    }
+
+    public void verifySuccessRegistration(String successText) {
+        assertThat(page.locator(registerResult)).containsText(successText);
     }
 }

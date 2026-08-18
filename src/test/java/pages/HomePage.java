@@ -3,7 +3,9 @@ package pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
-public class HomePage extends BasePage{
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+
+public class HomePage extends BasePage {
     private static final String headerRegisterButton = ".ico-register";
     private static final String headerLoginButton = ".ico-login";
     private static final String headerHomeButton = ".header-logo";
@@ -14,22 +16,6 @@ public class HomePage extends BasePage{
 
     public HomePage(Page page) {
         super(page);
-    }
-
-    public Locator getSearchedProductTitle() {
-        return page.locator(searchedProductTitle);
-    }
-
-    public Locator getSearchBar() {
-        return page.locator(searchBar);
-    }
-
-    public Locator getSearchButton() {
-        return page.locator(searchButton);
-    }
-
-    public Locator getLogOutButton(){
-        return page.locator(logOutButton);
     }
 
     public void clickOnLogoutButton() {
@@ -54,6 +40,14 @@ public class HomePage extends BasePage{
 
     public void clickOnHeaderLoginButton() {
         page.locator(headerLoginButton).click();
+    }
+
+    public void verifyLogoutButtonIsHidden() {
+        assertThat(page.locator(logOutButton)).isHidden();
+    }
+
+    public void verifySearchedProductTitle(String productTitle) {
+        assertThat(page.locator(searchedProductTitle)).containsText(productTitle);
     }
 
 }

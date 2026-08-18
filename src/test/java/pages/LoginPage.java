@@ -3,6 +3,8 @@ package pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+
 public class LoginPage extends BasePage {
     private static final String emailInput = "#Email";
     private static final String passwordInput = "#Password";
@@ -12,14 +14,6 @@ public class LoginPage extends BasePage {
 
     public LoginPage(Page page) {
         super(page);
-    }
-
-    public Locator getHeaderUserEmail() {
-        return page.locator(headerUserEmail);
-    }
-
-    public Locator getValidationSummaryErrors() {
-        return page.locator(validationSummaryErrors);
     }
 
     public void fillEmailInput(String email) {
@@ -38,5 +32,13 @@ public class LoginPage extends BasePage {
         fillEmailInput(email);
         fillPasswordInput(password);
         clickOnLoginButton();
+    }
+
+    public void verifyValidationError(String expectedText) {
+        assertThat(page.locator(validationSummaryErrors)).containsText(expectedText);
+    }
+
+    public void verifySuccessLogin(String expectedLogin) {
+        assertThat(page.locator(headerUserEmail)).containsText(expectedLogin);
     }
 }

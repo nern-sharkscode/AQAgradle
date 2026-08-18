@@ -14,7 +14,7 @@ public class LoginTest extends BaseTest {
         HomePage homePage = new HomePage(page);
         homePage.clickOnHeaderLoginButton();
         loginPage.loginAs(config.getProperty("emailForUserSuccessLogin"), config.getProperty("passwordForUserSuccessLogin"));
-        assertThat(loginPage.getHeaderUserEmail()).hasText(config.getProperty("emailForUserSuccessLogin"));
+        loginPage.verifySuccessLogin(config.getProperty("emailForUserSuccessLogin"));
     }
 
     @Test(groups = "negative")
@@ -24,6 +24,6 @@ public class LoginTest extends BaseTest {
         HomePage homePage = new HomePage(page);
         homePage.clickOnHeaderLoginButton();
         loginPage.loginAs(config.getProperty("emailForUserUnsuccessLogin"), config.getProperty("passwordForUserUnsuccessLogin"));
-        assertThat(loginPage.getValidationSummaryErrors()).containsText(failedLoginText);
+        loginPage.verifyValidationError(failedLoginText);
     }
 }

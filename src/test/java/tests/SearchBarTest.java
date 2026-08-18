@@ -8,11 +8,11 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 public class SearchBarTest extends BaseTest {
 
     @Test(groups = "positive")
-    public void searchProduct(){
+    public void searchProduct() {
         String productName = "Build your own expensive computer";
         HomePage homePage = new HomePage(page);
         homePage.fillSearchBar(productName);
         homePage.clickOnSearchButton();
-        assertThat(homePage.getSearchedProductTitle()).hasText(productName);
+        homePage.verifySearchedProductTitle(productName);
     }
 }

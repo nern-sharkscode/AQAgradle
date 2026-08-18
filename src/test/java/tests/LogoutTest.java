@@ -8,12 +8,12 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 
 public class LogoutTest extends BaseTest {
     @Test(groups = "positive")
-    public void logoutTest(){
+    public void logoutTest() {
         HomePage homePage = new HomePage(page);
         LoginPage loginPage = new LoginPage(page);
         homePage.clickOnHeaderLoginButton();
         loginPage.loginAs(config.getProperty("emailForUserSuccessLogin"), config.getProperty("passwordForUserSuccessLogin"));
         homePage.clickOnLogoutButton();
-        assertThat(homePage.getLogOutButton()).isHidden();
+        homePage.verifyLogoutButtonIsHidden();
     }
 }
