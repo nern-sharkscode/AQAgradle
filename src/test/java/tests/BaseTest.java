@@ -1,6 +1,8 @@
 package tests;
 
 import com.microsoft.playwright.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -15,7 +17,7 @@ import java.nio.file.Paths;
 import java.util.Properties;
 
 public class BaseTest {
-
+    protected static final Logger logger = LogManager.getLogger(BaseTest.class);
     // Shared between all tests in this class.
     Playwright playwright;
     Browser browser;
@@ -49,5 +51,16 @@ public class BaseTest {
             page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("screenshots/" + testName + ".png")));
         }
         context.close();
+    }
+
+    @AfterMethod
+    public void logTestResult(ITestResult result) {
+        String testName = result.getMethod().getMethodName();
+
+        if (result.getStatus() == ITestResult.SUCCESS) {
+            logger.info(testName + " is passed successfully :)");
+        } else if (result.getStatus() == ITestResult.FAILURE) {
+            logger.error(testName + " is passed unsuccessfully :(");
+        }
     }
 }
