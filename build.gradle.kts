@@ -16,5 +16,7 @@ dependencies {
 
 
 tasks.test {
-    useTestNG()
+    useTestNG {
+        suites("testng.xml")
+    }
 }
