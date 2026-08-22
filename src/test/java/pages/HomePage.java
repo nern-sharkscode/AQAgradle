@@ -2,8 +2,12 @@ package pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import io.qameta.allure.Step;
+import jdk.jfr.Registered;
 
-public class HomePage extends BasePage{
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+
+public class HomePage extends BasePage {
     private static final String headerRegisterButton = ".ico-register";
     private static final String headerLoginButton = ".ico-login";
     private static final String headerHomeButton = ".header-logo";
@@ -16,44 +20,44 @@ public class HomePage extends BasePage{
         super(page);
     }
 
-    public Locator getSearchedProductTitle() {
-        return page.locator(searchedProductTitle);
-    }
-
-    public Locator getSearchBar() {
-        return page.locator(searchBar);
-    }
-
-    public Locator getSearchButton() {
-        return page.locator(searchButton);
-    }
-
-    public Locator getLogOutButton(){
-        return page.locator(logOutButton);
-    }
-
+    @Step("clickOnLogoutButton")
     public void clickOnLogoutButton() {
         page.locator(logOutButton).click();
     }
 
+    @Step("clickOnSearchButton")
     public void clickOnSearchButton() {
         page.locator(searchButton).click();
     }
 
-    public void fillSearchBar() {
-        page.locator(searchBar).fill("Build your own expensive computer");
+    @Step("fillSearchBar")
+    public void fillSearchBar(String searchText) {
+        page.locator(searchBar).fill(searchText);
     }
 
+    @Step("clickOnHeaderHomeButton")
     public void clickOnHeaderHomeButton() {
         page.locator(headerHomeButton).click();
     }
 
+    @Step("clickOnHeaderRegisterButton")
     public void clickOnHeaderRegisterButton() {
         page.locator(headerRegisterButton).click();
     }
 
+    @Step("clickOnHeaderLoginButton")
     public void clickOnHeaderLoginButton() {
         page.locator(headerLoginButton).click();
+    }
+
+    @Step("verifyLogoutButtonIsHidden")
+    public void verifyLogoutButtonIsHidden() {
+        assertThat(page.locator(logOutButton)).isHidden();
+    }
+
+    @Step("verifySearchedProductTitle")
+    public void verifySearchedProductTitle(String productTitle) {
+        assertThat(page.locator(searchedProductTitle)).containsText(productTitle);
     }
 
 }
