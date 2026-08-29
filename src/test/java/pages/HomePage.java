@@ -22,32 +22,32 @@ public class HomePage extends BasePage {
 
     @Step("clickOnLogoutButton")
     public void clickOnLogoutButton() {
-        page.locator(logOutButton).click();
+        click(logOutButton);
     }
 
     @Step("clickOnSearchButton")
     public void clickOnSearchButton() {
-        page.locator(searchButton).click();
+        click(searchButton);
     }
 
     @Step("fillSearchBar")
     public void fillSearchBar(String searchText) {
-        page.locator(searchBar).fill(searchText);
+        fill(searchBar, searchText);
     }
 
     @Step("clickOnHeaderHomeButton")
     public void clickOnHeaderHomeButton() {
-        page.locator(headerHomeButton).click();
+        click(headerHomeButton);
     }
 
     @Step("clickOnHeaderRegisterButton")
     public void clickOnHeaderRegisterButton() {
-        page.locator(headerRegisterButton).click();
+        click(headerRegisterButton);
     }
 
     @Step("clickOnHeaderLoginButton")
     public void clickOnHeaderLoginButton() {
-        page.locator(headerLoginButton).click();
+        click(headerLoginButton);
     }
 
     @Step("verifyLogoutButtonIsHidden")

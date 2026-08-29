@@ -38,7 +38,7 @@ public class BaseTest {
 
     @BeforeMethod
     void createContextAndPage() {
-        context = browser.newContext(new Browser.NewContextOptions().setBaseURL(ConfigReader.getPropertyFromConfig("baseUrl")));
+        context = browser.newContext(new Browser.NewContextOptions().setBaseURL(ConfigReader.getBaseUrl()));
         page = context.newPage();
         page.navigate("/");
     }

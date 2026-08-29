@@ -13,7 +13,7 @@ public class LogoutTest extends BaseTest {
         HomePage homePage = new HomePage(page);
         LoginPage loginPage = new LoginPage(page);
         homePage.clickOnHeaderLoginButton();
-        loginPage.loginAs(ConfigReader.getPropertyFromConfig("emailForUserSuccessLogin"), ConfigReader.getPropertyFromConfig("passwordForUserSuccessLogin"));
+        loginPage.loginAs(ConfigReader.getEmailForUserSuccessLogin(), ConfigReader.getPasswordForUserSuccessLogin());
         homePage.clickOnLogoutButton();
         homePage.verifyLogoutButtonIsHidden();
     }

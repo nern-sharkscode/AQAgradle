@@ -16,16 +16,16 @@ public class LoginTest extends BaseTest {
     public Object[][] getInvalidCredentials() {
         return new Object[][]{
                 {
-                        ConfigReader.getPropertyFromConfig("emailForUserUnsuccessLogin"),
-                        ConfigReader.getPropertyFromConfig("passwordForUserUnsuccessLogin")
+                        ConfigReader.getEmailForUserUnsuccessLogin(),
+                        ConfigReader.getPasswordForUserUnsuccessLogin()
                 },
                 {
-                        ConfigReader.getPropertyFromConfig("emailForUserSuccessLogin"),
-                        ConfigReader.getPropertyFromConfig("passwordForUserUnsuccessLogin")
+                        ConfigReader.getEmailForUserSuccessLogin(),
+                        ConfigReader.getPasswordForUserUnsuccessLogin()
                 },
                 {
-                        ConfigReader.getPropertyFromConfig("emailForUserUnsuccessLogin"),
-                        ConfigReader.getPropertyFromConfig("passwordForUserSuccessLogin")
+                        ConfigReader.getEmailForUserUnsuccessLogin(),
+                        ConfigReader.getPasswordForUserUnsuccessLogin()
                 }
         };
     }
@@ -35,8 +35,8 @@ public class LoginTest extends BaseTest {
         LoginPage loginPage = new LoginPage(page);
         HomePage homePage = new HomePage(page);
         homePage.clickOnHeaderLoginButton();
-        loginPage.loginAs(ConfigReader.getPropertyFromConfig("emailForUserSuccessLogin"), ConfigReader.getPropertyFromConfig("passwordForUserSuccessLogin"));
-        loginPage.verifySuccessLogin(ConfigReader.getPropertyFromConfig("emailForUserSuccessLogin"));
+        loginPage.loginAs(ConfigReader.getEmailForUserSuccessLogin(), ConfigReader.getPasswordForUserSuccessLogin());
+        loginPage.verifySuccessLogin(ConfigReader.getEmailForUserSuccessLogin());
     }
 
     @Test(groups = "negative", dataProvider = "invalidCredentials")
