@@ -23,42 +23,42 @@ public class RegisterPage extends BasePage {
 
     @Step("clickOnGenderMaleRadioButton")
     public void clickOnGenderMaleRadioButton() {
-        page.locator(genderMaleRadioButton).click();
+        page.click(genderMaleRadioButton);
     }
 
     @Step("clickOnGenderFemaleRadioButton")
     public void clickOnGenderFemaleRadioButton() {
-        page.locator(genderFemaleRadioButton).click();
+        page.click(genderFemaleRadioButton);
     }
 
     @Step("fillFirstNameInput")
     public void fillFirstNameInput(String firstName) {
-        page.locator(firstNameInput).fill(firstName);
+        page.fill(firstNameInput, firstName);
     }
 
     @Step("fillLastNameInput")
     public void fillLastNameInput(String lastName) {
-        page.locator(lastNameInput).fill(lastName);
+        page.fill(lastNameInput, lastName);
     }
 
     @Step("fillEmailInput")
     public void fillEmailInput(String email) {
-        page.locator(emailInput).fill(email);
+        page.fill(emailInput, email);
     }
 
     @Step("fillPasswordInput")
     public void fillPasswordInput(String password) {
-        page.locator(passwordInput).fill(password);
+        page.fill(passwordInput, password);
     }
 
     @Step("fillConfirmPasswordInput")
     public void fillConfirmPasswordInput(String password) {
-        page.locator(confirmPasswordInput).fill(password);
+        page.fill(confirmPasswordInput, password);
     }
 
     @Step("clickOnRegisterButton")
     public void clickOnRegisterButton() {
-        page.locator(registerButton).click();
+        page.click(registerButton);
     }
 
     @Step("registerAs")

@@ -19,17 +19,17 @@ public class LoginPage extends BasePage {
 
     @Step("fillEmailInput")
     public void fillEmailInput(String email) {
-        page.locator(emailInput).fill(email);
+        page.fill(emailInput,email);
     }
 
     @Step("fillPasswordInput")
     public void fillPasswordInput(String password) {
-        page.locator(passwordInput).fill(password);
+        page.fill(passwordInput,password);
     }
 
     @Step("clickOnLoginButton")
     public void clickOnLoginButton() {
-        page.locator(loginButton).click();
+        page.click(loginButton);
     }
 
     @Step("loginAs")

@@ -8,7 +8,6 @@ public class ConfigReader {
     public static Properties config = new Properties();
 
     static {
-        // Змінено назву файлу на config.properties, як у твоєму проєкті
         try (InputStream input = ConfigReader.class.getClassLoader().getResourceAsStream("config.properties")) {
             if (input == null) {
                 throw new RuntimeException("Не знайдено файл config.properties у папці resources!");
@@ -18,11 +17,6 @@ public class ConfigReader {
             throw new RuntimeException("Помилка під час читання конфігурації: ", e);
         }
     }
-
-    public static String getPropertyFromConfig(String key) {
-        return config.getProperty(key);
-    }
-
 
     public static String getBaseUrl() {
         return config.getProperty("baseUrl");
