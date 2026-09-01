@@ -1,7 +1,0 @@
-2026-08-22 22:31:00 [Test worker] INFO  tests.BaseTest - searchProduct is passed successfully :)
-2026-08-22 22:31:03 [Test worker] INFO  tests.BaseTest - invalidLogin is passed successfully :)
-2026-08-22 22:31:05 [Test worker] INFO  tests.BaseTest - invalidLogin is passed successfully :)
-2026-08-22 22:31:07 [Test worker] INFO  tests.BaseTest - invalidLogin is passed successfully :)
-2026-08-22 22:31:10 [Test worker] INFO  tests.BaseTest - successfulLogin is passed successfully :)
-2026-08-22 22:31:13 [Test worker] INFO  tests.BaseTest - logoutTest is passed successfully :)
-2026-08-22 22:31:17 [Test worker] INFO  tests.BaseTest - SuccessfulRegistration is passed successfully :)
