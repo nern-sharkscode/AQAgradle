@@ -1,6 +1,5 @@
 package pages;
 
-import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import io.qameta.allure.Step;
 
@@ -23,42 +22,42 @@ public class RegisterPage extends BasePage {
 
     @Step("clickOnGenderMaleRadioButton")
     public void clickOnGenderMaleRadioButton() {
-        page.click(genderMaleRadioButton);
+        click(genderMaleRadioButton);
     }
 
     @Step("clickOnGenderFemaleRadioButton")
     public void clickOnGenderFemaleRadioButton() {
-        page.click(genderFemaleRadioButton);
+        click(genderFemaleRadioButton);
     }
 
     @Step("fillFirstNameInput")
     public void fillFirstNameInput(String firstName) {
-        page.fill(firstNameInput, firstName);
+        fill(firstNameInput, firstName);
     }
 
     @Step("fillLastNameInput")
     public void fillLastNameInput(String lastName) {
-        page.fill(lastNameInput, lastName);
+        fill(lastNameInput, lastName);
     }
 
     @Step("fillEmailInput")
     public void fillEmailInput(String email) {
-        page.fill(emailInput, email);
+        fill(emailInput, email);
     }
 
     @Step("fillPasswordInput")
     public void fillPasswordInput(String password) {
-        page.fill(passwordInput, password);
+        fill(passwordInput, password);
     }
 
     @Step("fillConfirmPasswordInput")
     public void fillConfirmPasswordInput(String password) {
-        page.fill(confirmPasswordInput, password);
+        fill(confirmPasswordInput, password);
     }
 
     @Step("clickOnRegisterButton")
     public void clickOnRegisterButton() {
-        page.click(registerButton);
+        click(registerButton);
     }
 
     @Step("registerAs")

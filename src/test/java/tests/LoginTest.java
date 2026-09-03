@@ -25,7 +25,7 @@ public class LoginTest extends BaseTest {
                 },
                 {
                         ConfigReader.getEmailForUserUnsuccessLogin(),
-                        ConfigReader.getPasswordForUserUnsuccessLogin()
+                        ConfigReader.getPasswordForUserSuccessLogin()
                 }
         };
     }
