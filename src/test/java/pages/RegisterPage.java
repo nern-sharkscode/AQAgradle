@@ -1,7 +1,7 @@
 package pages;
 
-import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import io.qameta.allure.Step;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
@@ -20,38 +20,47 @@ public class RegisterPage extends BasePage {
         super(page);
     }
 
+    @Step("clickOnGenderMaleRadioButton")
     public void clickOnGenderMaleRadioButton() {
-        page.locator(genderMaleRadioButton).click();
+        click(genderMaleRadioButton);
     }
 
+    @Step("clickOnGenderFemaleRadioButton")
     public void clickOnGenderFemaleRadioButton() {
-        page.locator(genderFemaleRadioButton).click();
+        click(genderFemaleRadioButton);
     }
 
+    @Step("fillFirstNameInput")
     public void fillFirstNameInput(String firstName) {
-        page.locator(firstNameInput).fill(firstName);
+        fill(firstNameInput, firstName);
     }
 
+    @Step("fillLastNameInput")
     public void fillLastNameInput(String lastName) {
-        page.locator(lastNameInput).fill(lastName);
+        fill(lastNameInput, lastName);
     }
 
+    @Step("fillEmailInput")
     public void fillEmailInput(String email) {
-        page.locator(emailInput).fill(email);
+        fill(emailInput, email);
     }
 
+    @Step("fillPasswordInput")
     public void fillPasswordInput(String password) {
-        page.locator(passwordInput).fill(password);
+        fill(passwordInput, password);
     }
 
+    @Step("fillConfirmPasswordInput")
     public void fillConfirmPasswordInput(String password) {
-        page.locator(confirmPasswordInput).fill(password);
+        fill(confirmPasswordInput, password);
     }
 
+    @Step("clickOnRegisterButton")
     public void clickOnRegisterButton() {
-        page.locator(registerButton).click();
+        click(registerButton);
     }
 
+    @Step("registerAs")
     public void registerAs(String firstName, String lastName, String email, String password) {
         clickOnGenderMaleRadioButton();
         fillFirstNameInput(firstName);
@@ -62,6 +71,7 @@ public class RegisterPage extends BasePage {
         clickOnRegisterButton();
     }
 
+    @Step("Verify if text about success registration is visible")
     public void verifySuccessRegistration(String successText) {
         assertThat(page.locator(registerResult)).containsText(successText);
     }

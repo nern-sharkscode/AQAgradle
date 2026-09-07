@@ -2,6 +2,8 @@ package pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import io.qameta.allure.Step;
+import jdk.jfr.Registered;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
@@ -18,34 +20,42 @@ public class HomePage extends BasePage {
         super(page);
     }
 
+    @Step("clickOnLogoutButton")
     public void clickOnLogoutButton() {
-        page.locator(logOutButton).click();
+        click(logOutButton);
     }
 
+    @Step("clickOnSearchButton")
     public void clickOnSearchButton() {
-        page.locator(searchButton).click();
+        click(searchButton);
     }
 
+    @Step("fillSearchBar")
     public void fillSearchBar(String searchText) {
-        page.locator(searchBar).fill(searchText);
+        fill(searchBar, searchText);
     }
 
+    @Step("clickOnHeaderHomeButton")
     public void clickOnHeaderHomeButton() {
-        page.locator(headerHomeButton).click();
+        click(headerHomeButton);
     }
 
+    @Step("clickOnHeaderRegisterButton")
     public void clickOnHeaderRegisterButton() {
-        page.locator(headerRegisterButton).click();
+        click(headerRegisterButton);
     }
 
+    @Step("clickOnHeaderLoginButton")
     public void clickOnHeaderLoginButton() {
-        page.locator(headerLoginButton).click();
+        click(headerLoginButton);
     }
 
+    @Step("verifyLogoutButtonIsHidden")
     public void verifyLogoutButtonIsHidden() {
         assertThat(page.locator(logOutButton)).isHidden();
     }
 
+    @Step("verifySearchedProductTitle")
     public void verifySearchedProductTitle(String productTitle) {
         assertThat(page.locator(searchedProductTitle)).containsText(productTitle);
     }

@@ -2,6 +2,7 @@ package pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import io.qameta.allure.Step;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
@@ -16,28 +17,34 @@ public class LoginPage extends BasePage {
         super(page);
     }
 
+    @Step("fillEmailInput")
     public void fillEmailInput(String email) {
-        page.locator(emailInput).fill(email);
+        fill(emailInput,email);
     }
 
+    @Step("fillPasswordInput")
     public void fillPasswordInput(String password) {
-        page.locator(passwordInput).fill(password);
+        fill(passwordInput,password);
     }
 
+    @Step("clickOnLoginButton")
     public void clickOnLoginButton() {
-        page.locator(loginButton).click();
+        click(loginButton);
     }
 
+    @Step("loginAs")
     public void loginAs(String email, String password) {
         fillEmailInput(email);
         fillPasswordInput(password);
         clickOnLoginButton();
     }
 
+    @Step("Check if field validation contain text \"Login was unsuccessful.\"")
     public void verifyValidationError(String expectedText) {
         assertThat(page.locator(validationSummaryErrors)).containsText(expectedText);
     }
 
+    @Step("Check if user email is visible on page header")
     public void verifySuccessLogin(String expectedLogin) {
         assertThat(page.locator(headerUserEmail)).containsText(expectedLogin);
     }
