@@ -4,18 +4,26 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigReader {
+    private static ConfigReader instance;
+    private static Properties config;
 
-    public static Properties config = new Properties();
-
-    static {
-        try (InputStream input = ConfigReader.class.getClassLoader().getResourceAsStream("config.properties")) {
-            if (input == null) {
-                throw new RuntimeException("Не знайдено файл config.properties у папці resources!");
-            }
+    private ConfigReader() {
+        try (InputStream input = getClass()
+                .getClassLoader()
+                .getResourceAsStream("config.properties")) {
+            config = new Properties();
             config.load(input);
         } catch (Exception e) {
             throw new RuntimeException("Помилка під час читання конфігурації: ", e);
         }
+    }
+
+
+   public static ConfigReader getInstance() {
+        if (instance == null) {
+            instance = new ConfigReader();
+        }
+        return instance;
     }
 
     public static String getBaseUrl() {

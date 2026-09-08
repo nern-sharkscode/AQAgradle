@@ -18,34 +18,31 @@ public class LoginPage extends BasePage {
     }
 
     @Step("fillEmailInput")
-    public void fillEmailInput(String email) {
+    public LoginPage fillEmailInput(String email) {
         fill(emailInput,email);
+        return this;
     }
 
     @Step("fillPasswordInput")
-    public void fillPasswordInput(String password) {
-        fill(passwordInput,password);
+    public LoginPage fillPasswordInput(String password) {
+        fill(passwordInput,password);return this;
     }
 
     @Step("clickOnLoginButton")
-    public void clickOnLoginButton() {
+    public LoginPage clickOnLoginButton() {
         click(loginButton);
-    }
-
-    @Step("loginAs")
-    public void loginAs(String email, String password) {
-        fillEmailInput(email);
-        fillPasswordInput(password);
-        clickOnLoginButton();
+        return this;
     }
 
     @Step("Check if field validation contain text \"Login was unsuccessful.\"")
-    public void verifyValidationError(String expectedText) {
+    public LoginPage verifyValidationError(String expectedText) {
         assertThat(page.locator(validationSummaryErrors)).containsText(expectedText);
+        return this;
     }
 
     @Step("Check if user email is visible on page header")
-    public void verifySuccessLogin(String expectedLogin) {
+    public LoginPage verifySuccessLogin(String expectedLogin) {
         assertThat(page.locator(headerUserEmail)).containsText(expectedLogin);
+        return this;
     }
 }
