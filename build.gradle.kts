@@ -11,6 +11,10 @@ repositories {
 }
 
 dependencies {
+    compileOnly ("org.projectlombok:lombok:1.18.32")
+    annotationProcessor ("org.projectlombok:lombok:1.18.32")
+    testCompileOnly ("org.projectlombok:lombok:1.18.32")
+    testAnnotationProcessor ("org.projectlombok:lombok:1.18.32")
     implementation("com.microsoft.playwright:playwright:1.61.0")
     testImplementation("org.testng:testng:7.12.0")
     implementation("org.apache.logging.log4j:log4j-api:2.23.1")

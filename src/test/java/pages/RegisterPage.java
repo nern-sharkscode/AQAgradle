@@ -21,54 +21,51 @@ public class RegisterPage extends BasePage {
     }
 
     @Step("clickOnGenderMaleRadioButton")
-    public void clickOnGenderMaleRadioButton() {
+    public RegisterPage clickOnGenderMaleRadioButton() {
         click(genderMaleRadioButton);
+        return this;
     }
 
     @Step("clickOnGenderFemaleRadioButton")
-    public void clickOnGenderFemaleRadioButton() {
+    public RegisterPage clickOnGenderFemaleRadioButton() {
         click(genderFemaleRadioButton);
+        return this;
     }
 
     @Step("fillFirstNameInput")
-    public void fillFirstNameInput(String firstName) {
+    public RegisterPage fillFirstNameInput(String firstName) {
         fill(firstNameInput, firstName);
+        return this;
     }
 
     @Step("fillLastNameInput")
-    public void fillLastNameInput(String lastName) {
+    public RegisterPage fillLastNameInput(String lastName) {
         fill(lastNameInput, lastName);
+        return this;
     }
 
     @Step("fillEmailInput")
-    public void fillEmailInput(String email) {
+    public RegisterPage fillEmailInput(String email) {
         fill(emailInput, email);
+        return this;
     }
 
     @Step("fillPasswordInput")
-    public void fillPasswordInput(String password) {
+    public RegisterPage fillPasswordInput(String password) {
         fill(passwordInput, password);
+        return this;
     }
 
     @Step("fillConfirmPasswordInput")
-    public void fillConfirmPasswordInput(String password) {
+    public RegisterPage fillConfirmPasswordInput(String password) {
         fill(confirmPasswordInput, password);
+        return this;
     }
 
     @Step("clickOnRegisterButton")
-    public void clickOnRegisterButton() {
+    public RegisterPage clickOnRegisterButton() {
         click(registerButton);
-    }
-
-    @Step("registerAs")
-    public void registerAs(String firstName, String lastName, String email, String password) {
-        clickOnGenderMaleRadioButton();
-        fillFirstNameInput(firstName);
-        fillLastNameInput(lastName);
-        fillEmailInput(email);
-        fillPasswordInput(password);
-        fillConfirmPasswordInput(password);
-        clickOnRegisterButton();
+        return this;
     }
 
     @Step("Verify if text about success registration is visible")

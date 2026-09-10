@@ -1,5 +1,9 @@
 package tests;
 
+import facade.LoginFacade;
+import facade.RegistrationFacade;
+import models.UserRegistration;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.RegisterPage;
@@ -7,11 +11,20 @@ import pages.RegisterPage;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class RegisterTest extends BaseTest {
+    private RegistrationFacade registerFacade;
     Long timeMS = System.currentTimeMillis();
     String firstName = "User" + timeMS;
-    String lastName = "First";
-    String email = firstName + "@gmail.com";
-    String password = "qwerty1";
+    @BeforeMethod
+    public void setUpFacade() {
+        registerFacade = new RegistrationFacade(page);
+    }
+
+    UserRegistration newUser = UserRegistration.builder()
+            .firstName(firstName)
+            .lastName("First")
+            .email(firstName + "@gmail.com")
+            .password("qwerty1")
+            .build();
 
     @Test(groups = "positive")
     public void SuccessfulRegistration() {
@@ -19,7 +32,7 @@ public class RegisterTest extends BaseTest {
         HomePage homePage = new HomePage(page);
         RegisterPage registerPage = new RegisterPage(page);
         homePage.clickOnHeaderRegisterButton();
-        registerPage.registerAs(firstName, lastName, email, password);
+        registerFacade.registerAs(newUser);
         registerPage.verifySuccessRegistration(completedRegistration);
     }
 }

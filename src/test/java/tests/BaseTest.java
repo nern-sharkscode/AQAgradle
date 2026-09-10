@@ -8,20 +8,13 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 import utils.ConfigReader;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Paths;
-import java.util.Properties;
 
 @Listeners({AllureTestNg.class})
 public class BaseTest {
     protected static final Logger logger = LogManager.getLogger(BaseTest.class);
-    // Shared between all tests in this class.
     Playwright playwright;
     Browser browser;
-
-    // New instance for each test method.
     BrowserContext context;
     Page page;
 
@@ -38,7 +31,7 @@ public class BaseTest {
 
     @BeforeMethod
     void createContextAndPage() {
-        context = browser.newContext(new Browser.NewContextOptions().setBaseURL(ConfigReader.getBaseUrl()));
+        context = browser.newContext(new Browser.NewContextOptions().setBaseURL(ConfigReader.getInstance().getBaseUrl()));
         page = context.newPage();
         page.navigate("/");
     }
